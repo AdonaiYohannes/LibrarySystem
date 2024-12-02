@@ -1,0 +1,50 @@
+ER-Model and ER-Relationship 
+
+============================ER-Model================================
+Book:
+  - BookID INT (PK) NOT NULL
+  - Title VARCHAR NOT NULL
+  - PublishedYear INT
+  - Status BOOLEAN (DEFAULT TRUE) NOT NULL
+ 
+Author:
+  - AuthorID INT (PK) NOT NULL
+  - FirstName VARCHAR NOT NULL
+  - LastName VARCHAR NOT NULL
+  - (LIST ALL BOOKS BY AUTHOR)
+
+BookAuthor:
+  - BookAuthorID INT (PK) NOT NULL
+  - BookID INT (FK) NOT NULL
+  - AuthorID INT (FK) NOT NULL
+
+Loan:
+  - LoanID INT (PK) NOT NULL
+  - BookID INT (FK) NOT NULL
+  - BorrowerID INT (FK) NOT NULL
+  - ReturnDate DATETIME
+  - IsReturned BOOLEAN (DEFAULT FALSE)
+
+Borrower:
+  - BorrowerID INT (FK) NOT NULL
+  - FirstName VARCHAR NOT NULL
+  - LastName VARCHAR NOT NULL
+  - PersonNr INT UNIQUE NOT NULL
+  - Email VARCHAR NOT NULL
+  - Phone INT NOT NULL
+
+
+============================== ER-Relatioship ========================
+
+Book & Author (many to many)
+    - A book can be writen by more than one Author.
+    - An Author probably have written more than one book.
+    - Acess/connect using Bridge table (book and author tables).
+
+Book & Loan (one to many)
+    - A book can be loaned out many timmes.
+    - A loan only aplys to a specifik loan.
+    - Relationship managed using a Foreign Key BookID in Loan table.
+    
+
+
