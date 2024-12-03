@@ -1,10 +1,12 @@
-ER-Model and ER-Relationship 
+ER-Model and ER-Relationship
 
 ============================ER-Model================================
 Book:
   - BookID INT (PK) NOT NULL
+  -
   - Title VARCHAR NOT NULL
   - PublishedYear INT
+  - ISBN VARCHAR NOT NULL
   - Status BOOLEAN (DEFAULT TRUE) NOT NULL
  
 Author:
@@ -22,8 +24,8 @@ Loan:
   - LoanID INT (PK) NOT NULL
   - BookID INT (FK) NOT NULL
   - BorrowerID INT (FK) NOT NULL
+  - LoanDate DATETIME
   - ReturnDate DATETIME
-  - IsReturned BOOLEAN (DEFAULT FALSE)
 
 Borrower:
   - BorrowerID INT (FK) NOT NULL
@@ -45,6 +47,3 @@ Book & Loan (one to many)
     - A book can be loaned out many timmes.
     - A loan only aplys to a specifik loan.
     - Relationship managed using a Foreign Key BookID in Loan table.
-    
-
-
