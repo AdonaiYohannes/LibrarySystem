@@ -24,7 +24,7 @@ Loan:
   - LoanID INT (PK) NOT NULL
   - BookID INT (FK) NOT NULL
   - BorrowerID INT (FK) NOT NULL
-  - LoanDate DATETIME
+  -
   - ReturnDate DATETIME
 
 Borrower:

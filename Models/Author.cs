@@ -9,9 +9,6 @@ namespace Library.Models
         public int Id {get; set;}
         public required string FirstName {get; set;}
         public required string LastName {get; set;}
-        [ForeignKey("BookAuthor")]
-        public int BookAuthorId {get; set;}
-        public BookAuthor BookAuthor {get; set;}
-        //public required ICollection<BookAuthor>BookAuthors {get; set;}
+        public  ICollection<BookAuthor>BookAuthors {get; set;}
     }
 }
