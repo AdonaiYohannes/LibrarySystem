@@ -3,7 +3,6 @@ ER-Model and ER-Relationship
 ============================ER-Model================================
 Book:
   - BookID INT (PK) NOT NULL
-  -
   - Title VARCHAR NOT NULL
   - PublishedYear INT
   - ISBN VARCHAR NOT NULL
@@ -24,7 +23,6 @@ Loan:
   - LoanID INT (PK) NOT NULL
   - BookID INT (FK) NOT NULL
   - BorrowerID INT (FK) NOT NULL
-  -
   - ReturnDate DATETIME
 
 Borrower:
