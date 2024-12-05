@@ -1,41 +1,31 @@
-using Library.Models;
 using System;
+using Library.Models;
 using Microsoft.EntityFrameworkCore;
 
-class program 
+namespace Library
 {
-    static void Main(string[] args)
+    public class Seed
     {
-        using (var context = new LibraryContext())
+        public static void Run()
         {
-            // Creating an Author
-            var author = new Author 
+            using (var context = new LibraryContext())
             {
-                FirstName = "John", 
-                LastName = "Doe"
-            };
-            context.Authors.Add(author); //Adding to our Db Author
-            context.SaveChanges();
+                if (context.Books.Any() || context.Authors.Any() || context.Borrowers.Any())
+                    return;
+                
+                var authors = new[] // Add Author
+                {
+                    new Author { FirstName = "Ashok", LastName = "Tamang",},
+                    new Author { FirstName = "Niko", LastName = "Kohsa"},
+                    new Author { FirstName = "George", LastName = "Orwell"}
+                };
+                context.Authors.AddRange(authors);
 
-            // Creating a Book
-            var book = new Book 
-            {
-                Titel = "C# Programing", 
-                ISBN = "1234567890",
-                PublishedYear = 2024
-            };
-            context.Books.Add(book); // Adding to our Db Book
-            context.SaveChanges();   // Saves changes that are made
-
-            // Relation between Book and Author
-            var bookAuthor = new BookAuthor
-            {
-                BookId = bookId,
-                AuthorId = authorId,
-            };
-            context.BookAuthors.Add(bookAuthor);
-            context.SaveChanges();
-        
+                //add book
+                //conect book to author
+                //add borrower
+                //add loan
+            }
         }
     }
 }
