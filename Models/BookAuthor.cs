@@ -8,9 +8,9 @@ namespace Library.Models
     {
         public int Id {get; set;}
         public int BookId {get; set;}
-        public required Book Book {get; set;}
+        public Book Book {get; set;}
         public int AuthorId {get; set;}
-        public required Author Author {get; set;}
+        public Author Author {get; set;}
         
     }
     

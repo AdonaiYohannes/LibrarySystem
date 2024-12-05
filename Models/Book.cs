@@ -9,7 +9,7 @@ namespace Library.Models
         public int ID {get; set;}
         public required string Titel {get; set;}
         public int PublishedYear {get; set;}
-        public required string ISBN {get; set;} // I understand that the real ISBN is not just string
+        public string ISBN {get; set;} 
         public  ICollection<BookAuthor> BookAuthors {get; set;}
         public ICollection<Loan> Loans {get; set;}
     }

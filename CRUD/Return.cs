@@ -1,36 +1,50 @@
 using System;
+using System.Linq;
 using Library.Models;
 
-public class ReturnBook
+namespace LibrarySystem.Operations
 {
-    public static void ReturnBook()
+    public class Return
+    {
+        public static void Run()
         {
-            Console.WriteLine("\nEnter Borrower ID: ");
-            int borrowerId = int.Parse(Console.ReadLine());
-            var borrower = Borrower.(b => b.Id == borrowerId);
-
-            if (borrower == null)
+            using (var context = new LibraryContext())
             {
-                Console.WriteLine("Borrower not found.");
-                return;
-            }
+                Console.Write("Enter Borrower ID: ");
+                int borrowerId = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("\nEnter Book ID to Return: ");
-            int bookId = int.Parse(Console.ReadLine());
+                Console.Write("Enter Loan ID: ");
+                int loanId = int.Parse(Console.ReadLine());
 
-            if (!borrower.BorrowedBooks.Contains(bookId))
-            {
-                Console.WriteLine("You have not borrowed this book.");
-                return;
-            }
+                // Check if borrower exists
+                var borrower = context.Borrowers.FirstOrDefault(l => l.LoanId == loanId && l.BorrowerId == borrowerId);
+                if (borrower == null)
+                {
+                    Console.WriteLine("Borrower not found.");
+                    return;
+                }
 
-            var book = Books.FirstOrDefault(b => b.Id == bookId);
-            if (book != null)
-            {
-                book.IsBorrowed = false;
-                borrower.BorrowedBooks.Remove(book.Id);
+                // Checking if loan exists and belongs to the borrower
+                var loan = context.Loans.FirstOrDefault(l => l.LoanId == loanId && l.BorrowerId == borrowerId);
+                if (loan == null)
+                {
+                    Console.WriteLine("Loan not found or does not belong to this borrower.");
+                    return;
+                }
 
-                Console.WriteLine($"You returned: {book.Title}");
+                // Checking if the book is returned
+                if (loan.ReturnDate != null)
+                {
+                    Console.WriteLine("This book has already been returned.");
+                    return;
+                }
+
+                // Mark the book as returned
+                loan.ReturnDate = DateTime.Now;
+                context.SaveChanges();
+
+                Console.WriteLine($"Loan ID {loanId} has been successfully returned by Borrower ID {borrowerId}.");
             }
         }
+    }
 }

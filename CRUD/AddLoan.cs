@@ -4,52 +4,33 @@ using Library.Models;
 
 namespace Library.Operations
 {
-    public class Remove
+    public class AddLoan
     {
         public static void Run()
         {
             using (var context = new LibraryContext())
             {
-                Console.WriteLine("Enter the ID of the entity to remove:");
-                var id = int.Parse(Console.ReadLine());
+                Console.Write("Enter Borrower ID: ");
+                int borrowerId = int.Parse(Console.ReadLine());
 
-                Console.WriteLine("Enter the entity type (Book/Author/Loan):");
-                var entityType = Console.ReadLine().ToLower();
+                Console.Write("Enter Book ID: ");
+                int bookId = int.Parse(Console.ReadLine());
 
-                switch (entityType)
+                Console.Write("Enter Due Date (yyyy-MM-dd): ");
+                DateTime dueDate = DateTime.Parse(Console.ReadLine());
+
+                var loan = new Loan
                 {
-                    case "book":
-                        var book = context.Books.Find(id);
-                        if (book != null)
-                        {
-                            context.Books.Remove(book);
-                            context.SaveChanges();
-                            Console.WriteLine($"Book '{book.Titel}' removed successfully!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Book not found.");
-                        }
-                        break;
+                    BorrowerId = borrowerId,
+                    BookId = bookId,
+                    LoanDate = DateTime.Now,
+                    ReturnDate = dueDate
+                };
 
-                    case "author":
-                        var author = context.Authors.Find(id);
-                        if (author != null)
-                        {
-                            context.Authors.Remove(author);
-                            context.SaveChanges();
-                            Console.WriteLine($"Author '{author.FirstName} {author.LastName}' removed successfully!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Author not found.");
-                        }
-                        break;
+                context.Loans.Add(loan);
+                context.SaveChanges();
 
-                    default:
-                        Console.WriteLine("Invalid entity type.");
-                        break;
-                }
+                Console.WriteLine($"Loan added successfully for Book ID {bookId} to Borrower ID {borrowerId}.");
             }
         }
     }
