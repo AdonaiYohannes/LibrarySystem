@@ -8,6 +8,7 @@ namespace Library
     {
         static void Main(string[] args)
             {
+                Seed.Run();
                 Console.WriteLine("Welcome to the Library System!");
                 bool running = true;
 
@@ -41,7 +42,7 @@ namespace Library
                             Remove.Run();
                             break;
                         case "5":
-                            Uppdate.Run();
+                            Update.Run();
                             break;
                         case "6":
                             ListBook.Run();

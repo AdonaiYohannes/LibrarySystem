@@ -11,25 +11,21 @@ namespace Library.Operations
         {
             using (var context = new LibraryContext())
             {
-                var books = context.Books.Include(b => b.BookAuthors).ToList();
+                var books = context.Books.Include(b => b.BookAuthors)
+                    .ThenInclude(b => b.Author)
+                    .ToList();
+
+                
                 Console.WriteLine("\nAvailable Books:");
                 foreach (var book in books)
                 {
                     Console.WriteLine($"ID: {book.ID}, Title: {book.Titel}, ISBN: {book.ISBN}");
 
-                    if (book.BookAuthors != null && book.BookAuthors.Any())
+                    foreach (var Author in book.BookAuthors)
                     {
-                        foreach (var bookAuthor in book.BookAuthors)
-                        {
-                            var author = context.Authors.FirstOrDefault(a => a.Id == bookAuthor.AuthorId):
-                            if (author != null)
-                            {
-                                Console.WriteLine($"- {author.FirstName} {author.LastName}");
-                            }
-                        }
+                        Console.WriteLine($"Author ID: {Author.Id}, Name: {Author.Author.FirstName + Author.Author.LastName}");
                     }
                 }
-                Console.WriteLine();
             }
         }
     }

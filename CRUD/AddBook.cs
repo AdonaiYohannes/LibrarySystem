@@ -11,17 +11,23 @@ namespace Library.Operations
             {
                 Console.WriteLine("Enter Book Title: ");
                 var title = Console.ReadLine();
-                Console.WriteLine("Enter Books Publishing year(yyyy-mm-dd): ");
-                var publishedYear = int.Parse (Console.ReadLine());
+                Console.WriteLine("Enter Books Publishing year(yyyy): ");
+                // var publishedYear = int.Parse (Console.ReadLine());
+                var PublishedYear = Console.ReadLine();
+                if (!int.TryParse(Console.ReadLine(), out var published))
+                {
+                    Console.WriteLine("Invalide fromat!");
+                    return;
+                }
                 Console.WriteLine("Enter ISBN: ");
                 var isbn = Console.ReadLine();
                 
 
-                var book = new Book {Titel = title, PublishedYear = publishedYear, ISBN = isbn };
+                var book = new Book {Titel = title, PublishedYear = published, ISBN = isbn };
                 context.Books.Add(book);
                 context.SaveChanges();
                 
-                Console.WriteLine($"Book {title}, with Published Year {publishedYear} and ISBN {isbn} has been added.");
+                Console.WriteLine($"Book {title}, with Published Year {published} and ISBN {isbn} has been added.");
             }
         }
     }

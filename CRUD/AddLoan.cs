@@ -1,6 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Library.Models;
+using Microsoft.VisualBasic;
 
 namespace Library.Operations
 {
@@ -11,26 +12,41 @@ namespace Library.Operations
             using (var context = new LibraryContext())
             {
                 Console.Write("Enter Borrower ID: ");
-                int borrowerId = int.Parse(Console.ReadLine());
+                //int borrowerId = int.Parse(Console.ReadLine());
+                if(!int.TryParse(Console.ReadLine(), out var borrowerId))
+                {
+                    Console.WriteLine("Invalid Borrower ID");
+                    return;
+                }
 
                 Console.Write("Enter Book ID: ");
-                int bookId = int.Parse(Console.ReadLine());
+                //int bookId = int.Parse(Console.ReadLine());
+                if(!int.TryParse(Console.ReadLine(), out var bookId))
+                {
+                    Console.WriteLine("Invalid Book ID");
+                    return;
+                }
 
-                Console.Write("Enter Due Date (yyyy-MM-dd): ");
-                DateTime dueDate = DateTime.Parse(Console.ReadLine());
+                Console.Write("Enter loan Date (yyyy-MM-dd): ");
+                //DateTime dueDate = DateTime.Parse(Console.ReadLine());
+                if(!DateTime.TryParse(Console.ReadLine(), out var dueDate))
+                {
+                    Console.WriteLine("Invalid format!");
+                    return;
+                }
 
                 var loan = new Loan
                 {
                     BorrowerId = borrowerId,
                     BookId = bookId,
-                    LoanDate = DateTime.Now,
-                    ReturnDate = dueDate
+                    LoanDate = dueDate
+                    
                 };
 
                 context.Loans.Add(loan);
                 context.SaveChanges();
 
-                Console.WriteLine($"Loan added successfully for Book ID {bookId} to Borrower ID {borrowerId}.");
+                Console.WriteLine($"Loan added successfully for Book ID {bookId} to Borrower ID {borrowerId} with loan date {dueDate}.");
             }
         }
     }
