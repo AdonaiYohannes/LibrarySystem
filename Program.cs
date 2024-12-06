@@ -1,5 +1,6 @@
 ﻿using Library.Models;
 using Library.Operations;
+using LibrarySystem.Operations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library
@@ -18,11 +19,13 @@ namespace Library
                     Console.WriteLine("1. Add Author");
                     Console.WriteLine("2. Add Book");
                     Console.WriteLine("3. Add Author-Book Relationship");
-                    Console.WriteLine("4. Remove Book");
-                    Console.WriteLine("5. Update Book");
-                    Console.WriteLine("6. List All Books");
-                    Console.WriteLine("7. List All Loans");
-                    Console.WriteLine("8. Exit");
+                    Console.WriteLine("4. Borrow Book");
+                    Console.WriteLine("5. List All Books");
+                    Console.WriteLine("6. List All Loans");
+                    Console.WriteLine("7. Remove A Book");
+                    Console.WriteLine("8. Return A Book");
+                    Console.WriteLine("9. Update A Book");
+                    Console.WriteLine("10. Exit");
                     Console.Write("Choose an option: ");
 
                     string choice = Console.ReadLine();
@@ -39,18 +42,24 @@ namespace Library
                             AddBookAuthor.Run();
                             break;
                         case "4":
-                            Remove.Run();
+                            AddBorrower.Run();
                             break;
                         case "5":
-                            Update.Run();
-                            break;
-                        case "6":
                             ListBook.Run();
                             break;
-                        case "7":
+                        case "6":
                             ListLoan.Run();
                             break;
+                        case "7":
+                            Remove.Run();
+                            break;
                         case "8":
+                            Return.Run();
+                            break;
+                        case "9":
+                            Update.Run();
+                            break;
+                        case "10":
                             running = false;
                             break;
                         default:
