@@ -11,7 +11,7 @@ public class LibraryContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=LibraryDb;User ID=sa;Password=GeharestNo2;TrustServerCertificate=True;");
+        optionsBuilder.UseSqlServer("Server=localhost,1433;Database=bibliotekDb;User ID=sa;Password=GeharestNo2;TrustServerCertificate=True;");
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

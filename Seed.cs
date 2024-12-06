@@ -55,10 +55,26 @@ namespace Library
 
                 if (!context.BookAuthors.Any())
                 {
-                    var book1 = context.Books.First(B => B.Titel == "When I was a teenager?");
-                    var author1 = context.Authors.First(A => A.FirstName == "Niko" && A.LastName == " Rask");
-                    var book2 = context.Books.First(B => B.Titel ==  "Why I'm the GOAT");
-                    var author2 = context.Authors.First(A => A.FirstName == "Ashok" && A.LastName == " Tamang");
+                    var book1 = context.Books.FirstOrDefault(B => B.Titel == "When I was a teenager?");
+                    if(book1 == null)
+                    {
+                        Console.WriteLine("NO book");
+                    }
+                    var author1 = context.Authors.FirstOrDefault(A => A.FirstName == "Niko" && A.LastName == "Rask");
+                    if(author1 == null)
+                    {
+                        Console.WriteLine("NO author");
+                    }
+                    var book2 = context.Books.FirstOrDefault(B => B.Titel ==  "Why I'm the GOAT");
+                    if(book2 == null)
+                    {
+                        Console.WriteLine("NO book");
+                    }
+                    var author2 = context.Authors.FirstOrDefault(A => A.FirstName == "Ashok" && A.LastName == "Tamang");
+                    if(author2 == null)
+                    {
+                        Console.WriteLine("NO author");
+                    }
                     context.BookAuthors.Add(new BookAuthor{BookId = book1.ID, AuthorId = author1.Id });
                     context.BookAuthors.Add(new BookAuthor{BookId = book2.ID, AuthorId = author2.Id });
                     context.SaveChanges();

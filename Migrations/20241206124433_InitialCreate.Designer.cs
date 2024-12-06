@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20241204133429_InitialCreate")]
+    [Migration("20241206124433_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -102,6 +102,9 @@ namespace Library.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
 
                     b.Property<int>("MaxBooksAllowed")
                         .HasColumnType("int");

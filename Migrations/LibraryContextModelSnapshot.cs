@@ -100,6 +100,9 @@ namespace Library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
+
                     b.Property<int>("MaxBooksAllowed")
                         .HasColumnType("int");
 
