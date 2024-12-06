@@ -12,7 +12,6 @@ namespace Library.Operations
             using (var context = new LibraryContext())
             {
                 Console.Write("Enter Borrower ID: ");
-                //int borrowerId = int.Parse(Console.ReadLine());
                 if(!int.TryParse(Console.ReadLine(), out var borrowerId))
                 {
                     Console.WriteLine("Invalid Borrower ID");
@@ -20,7 +19,6 @@ namespace Library.Operations
                 }
 
                 Console.Write("Enter Book ID: ");
-                //int bookId = int.Parse(Console.ReadLine());
                 if(!int.TryParse(Console.ReadLine(), out var bookId))
                 {
                     Console.WriteLine("Invalid Book ID");
@@ -28,7 +26,6 @@ namespace Library.Operations
                 }
 
                 Console.Write("Enter loan Date (yyyy-MM-dd): ");
-                //DateTime dueDate = DateTime.Parse(Console.ReadLine());
                 if(!DateTime.TryParse(Console.ReadLine(), out var dueDate))
                 {
                     Console.WriteLine("Invalid format!");
@@ -40,7 +37,6 @@ namespace Library.Operations
                     BorrowerId = borrowerId,
                     BookId = bookId,
                     LoanDate = dueDate
-                    
                 };
 
                 context.Loans.Add(loan);

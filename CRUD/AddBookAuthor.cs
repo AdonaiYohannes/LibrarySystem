@@ -12,15 +12,13 @@ namespace Library.Models
             using (var context = new LibraryContext())
             {
                 Console.WriteLine("Enter Book ID: ");
-                //int bookId = int.Parse(Console.ReadLine());
                 if (!int.TryParse(Console.ReadLine(), out var bookId))
                 {
                     Console.WriteLine("Invalid Book ID!");
                     return;
                 }
                 Console.WriteLine("Enter Author ID: ");
-                //int authorId = int.Parse(Console.ReadLine());
-                // add if (incase input format is not correct)
+
                 if(!int.TryParse(Console.ReadLine(), out var authorId))
                 {
                     Console.WriteLine("Invalid Author ID: ");

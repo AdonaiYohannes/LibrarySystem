@@ -10,7 +10,6 @@ namespace Library.Operations
         {
             using (var context = new LibraryContext())
             {
-                // Eagerly load related data for Borrower and Book
                 var loanList = context.Loans
                     .Include(l => l.Borrower) // Include Borrower data
                     .Include(l => l.Book)     // Include Book data

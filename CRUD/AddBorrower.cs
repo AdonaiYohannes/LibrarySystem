@@ -30,7 +30,6 @@ namespace Library.Operations
                     Loans = new List<Loan>() // Initialize Loans
                 };
 
-                // Optionally, add a Loan for this Borrower
                 Console.Write("Enter Book ID for the Loan (or press Enter to skip): ");
                 var bookIdInput = Console.ReadLine();
                 if (!string.IsNullOrWhiteSpace(bookIdInput) && int.TryParse(bookIdInput, out int bookId))
@@ -39,10 +38,9 @@ namespace Library.Operations
                     {
                         BookId = bookId,
                         Borrower = borrower,
-                        BorrowerName = $"{firstName} {lastName}", // Use BorrowerName dynamically
+                        BorrowerName = $"{firstName} {lastName}",
                         LoanDate = DateTime.Now,
                     };
-
                     borrower.Loans.Add(loan); // Add loan to borrower's list
                     context.Loans.Add(loan); // Add loan to the context
                 }
